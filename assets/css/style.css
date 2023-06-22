@@ -1,0 +1,53 @@
+:root {
+    --xlitesunny: rgb(255, 253, 219);
+    --litesunny: rgb(255, 214, 86);
+    --warmsunny: rgb(255,180,0);
+    --sunny: rgb(240,189,68);
+    --darksunny: rgb(43,35,0);
+    --greensunny: rgb(70, 150, 70);
+    --litegreensunny: rgb(90, 170, 90);
+    --emeraldsunny: rgb(0,69,34);
+}
+
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: var(--xlitesunny);
+    text-align: center;
+    align-content: center;
+    padding: 3%;
+    display: block;
+}
+
+header {
+    margin: 5% 15% 0% 15%;
+    padding: 2% 0% 3% 0%;
+    border-radius: 15px;
+    color: var(--darksunny);
+    background-color: var(--litesunny);    
+
+}
+
+button {
+    background-color: var(--greensunny);
+    color: var(--xlitesunny);
+    border-radius: 3px;
+    border-style: none;
+    padding: 5px 15px 5px 15px;
+
+}
+
+.quiz-body{
+    margin: 10% 20% 10% 20%;
+    padding: 3%;
+    border-radius: 15px;
+    color: var(--darksunny);
+    background-color: var(--sunny);
+
+}    
+
+#quesButt{
+    margin-top: 5%;
+
+}
+
+
