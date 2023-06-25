@@ -45,6 +45,16 @@ button {
 
 }    
 
+.radios {
+    text-align: left;
+}
+
+/*
+.radios label {
+    display: inline ;
+} 
+*/
+
 #quesButt{
     margin-top: 5%;
 
