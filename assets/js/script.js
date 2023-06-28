@@ -43,6 +43,7 @@ var count = 0;
 setQuestText();
 hideQuizHTML();
 hideTimeHTML();
+hideScoreListHTML();
 
 //Find user choice
 var user = "";
@@ -241,16 +242,24 @@ function showScoreListHTML() {
 
 function hideScoreListHTML() {
     scoreLiEl.setAttribute("style", "display:none");
-}
+};
+
+function renderHighScore() {
+    var lastScore = JSON.parse(localStorage.getItem("highscore"));
+
+    if (lastScore !== null) {
+        document.getElementById("scoreListItem").innerHTML = lastScore.highScore[0].scoreIndex;
+    } else {
+        return;
+    }
+};
 
 
-function timeInterval() {
+function setTime() {
     var timeInterval = setInterval(function () {
         time--;
         timeEl.textContent = time;
-        if (time === 0 || time <= 0) 
-        
-        {
+        if (time === 0 || time <= 0) {
         clearInterval(timeInterval);
         hideQuizHTML();
         getFinalScore();
@@ -261,6 +270,7 @@ function timeInterval() {
         showStartHTML();
         hideTimeHTML();
         showScoreListHTML();
+        renderHighScore();
         }
     }, 1000);
 };
