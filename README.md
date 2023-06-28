@@ -1,8 +1,8 @@
-#Coding Quiz ReadME
+# Coding Quiz ReadME
 
 ## Description
 
-Welcome to my coding quiz project. This siteis built to demonstrate javascript functionality as well as local storage functions. Users are able to start a quiz and score points based on their performance in the quiz. The 5 best scores are intended to be displayed on the page after a completed quiz. 
+Welcome to my coding quiz project. This siteis built to demonstrate javascript functionality as well as local storage functions. Users are able to start a quiz and score points based on their performance in the quiz. The 5 best scores are intended to be displayed on the page after a completed quiz. Project can be found here https://roqieux.github.io/Coding-Quiz/
 
 ## Installation
 
