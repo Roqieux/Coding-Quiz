@@ -18,6 +18,7 @@ var countEl = document.querySelector("#quesID");
 var scoreEl = document.querySelector("#scoreID");
 var headEl = document.querySelector(".quiz-head");
 var quizEl = document.querySelector(".quiz-body");
+var scoreLiEl = document.querySelector("#scoreList")
 var timeHeadEl = document.querySelector("#time-body");
 var timeEl = document.querySelector("#time")
 
@@ -27,6 +28,7 @@ startBtn.addEventListener("click", quesNum);
 startBtn.addEventListener("click", shuffleQuestions);
 startBtn.addEventListener("click", htmlInsert);
 startBtn.addEventListener("click", hideStartHTML);
+startBtn.addEventListener("click", hideScoreListHTML);
 startBtn.addEventListener("click", showQuizHTML);
 startBtn.addEventListener("click",showTimeHTML);
 startBtn.addEventListener("click",setTime);
@@ -38,7 +40,6 @@ submitBtn.addEventListener("click", gameProgEnd);
 
 var time = 10;
 var count = 0;
-var highScore = [];
 setQuestText();
 hideQuizHTML();
 hideTimeHTML();
@@ -48,11 +49,14 @@ var user = "";
 var selectedAnswer = "";
 var correctAnswer = "";
 var score = 0;
-var displayScore = "";
+var displayScore = 0;
 var userInputs = document.querySelectorAll('input[name="answer"]');
+var userInput = ""
+
+var savedScores = [];
+
 
 //define question bank - questions as objects? 
-
 var questionBank =
     [
         {
@@ -207,17 +211,6 @@ function getFinalScore() {
     displayScore = displayScore+time;
 }
 
-function logHighScore() {
-    localStorage.getItem("scores", highScore);
-    highScore.push(displayScore);
-    highScore.sort();
-    highScore.reverse();
-    localStorage.setItem("scores", highScore);
-
-    // highScore.sort();
-    // localStorage.setItem(highScore);
-};
-
 function hideStartHTML() {
     headEl.setAttribute("style", "display:none");
 };
@@ -242,23 +235,47 @@ function showTimeHTML() {
     timeHeadEl.setAttribute("style", "display:block");
 };
 
+function showScoreListHTML() {
+    scoreLiEl.setAttribute("style", "display:block");
+};
 
-function setTime() {
+function hideScoreListHTML() {
+    scoreLiEl.setAttribute("style", "display:none");
+}
+
+
+function timeInterval() {
     var timeInterval = setInterval(function () {
         time--;
         timeEl.textContent = time;
-        if (time === 0) {
+        if (time === 0 || time <= 0) 
+        
+        {
         clearInterval(timeInterval);
         hideQuizHTML();
         getFinalScore();
         displaySaveScore();
-        logHighScore();
+        clearTimeout();
+        reset();
+        keepScore();
+        showStartHTML();
+        hideTimeHTML();
+        showScoreListHTML();
         }
     }, 1000);
 };
 
 function displaySaveScore() {  
-    var userName = window.prompt("enter you initials to save your highscore!");
+    var existing = JSON.parse(localStorage.getItem("highscore"));
+
+    if (existing == null) {
+        existing = []
+    };
+
+    existing.sort((b,a) => {return a.scoreIndex - b.scoreIndex;
+    });
+    
+    var userName = window.prompt("Enter you initials to save your highscore!");
     
     if (displayScore >= 500) {
         alert("Congrats! You're a true Sunny fan. Your final score was " + displayScore);
@@ -266,14 +283,28 @@ function displaySaveScore() {
     else {
         alert("Meeee-ouch! That was a Sunny hate crime. How Philly are youse?");
     };
-};
 
+    var highScore = [
+        {   
+            scoreIndex: displayScore,
+            initials: userName
+        }
+    
+    ];
+
+    existing.unshift(highScore);
+    existing.sort((a,b) => {return b.scoreIndex - a.scoreIndex;
+    });
+    existing.length = 5;
+    
+    localStorage.setItem("highscore",JSON.stringify(existing));
+
+};
 
 function reset() {
     score = 0;
     count = 0;
     displayScore = 0;
-    time = 100;
 }
 
 function gameProgEnd() {
@@ -294,14 +325,15 @@ function gameProgEnd() {
         keepScore();
         getFinalScore();
         displaySaveScore();
-        logHighScore();
+        clearTimeout();
+        clearInterval();
         reset();
         keepScore();
         showStartHTML();
         hideTimeHTML();
+        showScoreListHTML();
+    };
 
-        console.log("game is over");
-    }
 };
 
 
