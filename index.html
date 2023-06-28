@@ -10,13 +10,16 @@
 
 <body>
 
-<header>
-    <H2>PlaceholderText</H2>
+<header class ="quiz-head">
+    <H2 >Its Always Sunny in Quiz</H2>
+    <p> Test your knowledge about its always Sunny in Philadelphia. Game is over when time runs out or all questions are answered. Any time left at the end of the questions is added to your final score!</p>
     <button class = "button" id="startButt">Start</button>
 </header>
 
+    <div id="time-body">Time remaining <span id="time"></span></div>
 
-        <div class="quiz-body">
+
+        <div class="quiz-body" >
         <h2>Question Number <span id="quesID">##</span></h2>
         <h4 id="qText">Question Text</h4>
             <div class="radios">
@@ -42,6 +45,8 @@
             </div>
 
             <button class="button" id="quesButt">Submit</button>
+
+            <H4 class="scorebox">Current Score <span id="scoreID"></span></H4>
 
 
         </div>
