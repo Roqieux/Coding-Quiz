@@ -25,7 +25,7 @@ var timeEl = document.querySelector("#time")
 //Event listeners
 //startBtn.addEventListener("click", reset);
 startBtn.addEventListener("click", quesNum);
-startBtn.addEventListener("click", shuffleQuestions);
+// startBtn.addEventListener("click", shuffleQuestions);
 startBtn.addEventListener("click", htmlInsert);
 startBtn.addEventListener("click", hideStartHTML);
 startBtn.addEventListener("click", hideScoreListHTML);
@@ -171,16 +171,16 @@ function userAnswerTxt() {
 };
 
 // function to shuffle questions into a random order
-function shuffleQuestions() {
-    let index = questionBank.length, randomIndex;
-    while (index != 0) {
-        randomIndex = Math.floor(Math.random() * index);
-        index--;
-        [questionBank[index], questionBank[randomIndex]] = [questionBank[randomIndex], questionBank[index]];
-    }
-    console.dir(questionBank);
-    return questionBank;
-};
+// function shuffleQuestions() {
+//     let index = questionBank.length(), randomIndex;
+//     while (index != 0) {
+//         randomIndex = Math.floor(Math.random() * index);
+//         index--;
+//         [questionBank[index], questionBank[randomIndex]] = [questionBank[randomIndex], questionBank[index]];
+//     }
+//     console.dir(questionBank);
+//     return questionBank;
+// };
 
 // function to update HTML elements to match selected question
 function htmlInsert() {
@@ -244,15 +244,15 @@ function hideScoreListHTML() {
     scoreLiEl.setAttribute("style", "display:none");
 };
 
-function renderHighScore() {
-    var lastScore = JSON.parse(localStorage.getItem("highscore"));
+// function renderHighScore() {
+//     var lastScore = JSON.parse(localStorage.getItem("highscore"));
 
-    if (lastScore !== null) {
-        document.getElementById("scoreListItem").innerHTML = lastScore.highScore[0].scoreIndex;
-    } else {
-        return;
-    }
-};
+//     if (lastScore !== null) {
+//         document.getElementById("scoreListItem").innerHTML = lastScore.highScore[0].scoreIndex;
+//     } else {
+//         return;
+//     }
+// };
 
 
 function setTime() {
@@ -270,7 +270,7 @@ function setTime() {
         showStartHTML();
         hideTimeHTML();
         showScoreListHTML();
-        renderHighScore();
+        // renderHighScore();
         }
     }, 1000);
 };
